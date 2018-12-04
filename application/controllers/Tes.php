@@ -7,6 +7,7 @@ class Tes extends MY_Controller{
   {
     parent::__construct();
     //Codeigniter : Write Less Do More
+    $this->cekLogin();
   }
 
   function index()
