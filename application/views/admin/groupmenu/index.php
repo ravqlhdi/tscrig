@@ -9,7 +9,7 @@
       </div>
       <!-- breadcrumb -->
       <div class="col-md-6" style="text-align: right">
-        <?php echo $breadcrumbs;?>
+        <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
       </div>
     </div>
     <!-- status -->
@@ -103,7 +103,7 @@
                                       <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                           <i class="material-icons">settings</i>
                                       </a>
-                                      <ul class="dropdown-menu pull-right">                                          
+                                      <ul class="dropdown-menu pull-right">
                                           <li><a href="javascript:void(0);" onclick="changeDeleteUrlChild(<?php echo $value->{$current_page.'_id'}.',\''.$value->menu_name.'\',\''.$parent_id.'\'';?>)" class=" waves-effect waves-block" data-toggle="modal" data-target="#deleteModal">Delete</a></li>
                                       </ul>
                                   </div>

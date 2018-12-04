@@ -26,6 +26,8 @@
     <!-- Custom Js -->
     <script src="<?php echo site_url('assets/admin/')?>js/admin.js"></script>
 
+    <!-- CKeditor -->
+    <script type="text/javascript" src="<?php echo site_url('assets/ckeditor/')?>ckeditor.js"></script>
 
     <!-- Demo Js -->
     <script src="<?php echo site_url('assets/admin/')?>js/demo.js"></script>

@@ -3,8 +3,7 @@
     <div class="block-header row">
       <div class="col-md-6">
         <h2>
-            Management Menu <?php echo ucfirst($parent_value->menu_name);?>
-            <small>Page untuk menambahkan submenu untuk menu <?php echo $parent_value->menu_name?></small>
+          TES
         </h2>
       </div>
       <!-- breadcrumb -->
@@ -12,13 +11,15 @@
         <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
       </div>
     </div>
-    <!-- status -->
+    <!-- Alert for or status data change -->
       <?php if (isset($status)): ?>
         <div class="alert bg-<?php echo $status['color'] ?> alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
           <?php echo $status['message']; ?>
         </div>
       <?php endif; ?>
+
+      <!-- Table card section -->
       <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="card">
@@ -68,63 +69,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="body">
-
-                      <table id="mainTable" class="table table-striped table-bordered" style="cursor: pointer;">
-                        <thead>
-                           <tr>
-                             <th>No</th>
-                             <?php foreach ($table_header as $key => $value): ?>
-                               <th><?php echo $key?></th>
-                             <?php endforeach; ?>
-                              <th class="text-center">
-                                <a href="<?php echo base_url($current_page.'/create/'.$parent_id);?>"><button class="btn btn-primary btn-sm waves-effect">Tambah</button></a>
-                              </th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                          <?php if (!empty($for_table)): ?>
-                            <?php
-                            $no=1;
-                            foreach ($for_table as $key => $value): ?>
-                              <tr class="">
-                                <td><?php echo $no?></td>
-                                <?php
-                                foreach ($table_header as $k => $v): ?>
-                                  <?php if ($v=='menu_icon'): ?>
-                                      <td><i class="material-icons"><?php echo $value->$v;?></i><span><?php echo $value->$v;?></span></td>
-                                  <?php else: ?>
-                                      <td><?php echo $value->$v;?></td>
-                                  <?php endif; ?>
-
-                                <?php endforeach; ?>
-                                <td style="text-align:center">
-                                  <div class="dropdown">
-                                      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                          <i class="material-icons">settings</i>
-                                      </a>
-                                      <ul class="dropdown-menu pull-right">
-                                          <li><a href="<?php echo site_url($current_page.'/edit/'.$parent_id.'?id='.$value->{$current_page.'_id'})?>" class=" waves-effect waves-block">Edit</a></li>
-                                          <li><a href="javascript:void(0);" onclick="changeDeleteUrlChild(<?php echo $value->{$current_page.'_id'}.',\''.$value->{$current_page.'_name'}.'\',\''.$parent_id.'\'';?>)" class=" waves-effect waves-block" data-toggle="modal" data-target="#deleteModal">Delete</a></li>
-                                      </ul>
-                                  </div>
-                                </td>
-                              </tr>
-                            <?php
-                            $no++;
-                            endforeach;
-                            ?>
-                          <?php else: ?>
-                            <h3>Data Tidak Ditemukan</h3>
-                          <?php endif; ?>
-
-                        </tbody>
-                      </table>
-                      <?php
-                        if (isset($pagination_link)) {
-                            echo $pagination_link;
-                        }
-                      ?>
+                  <div class="body table-responsive">
+                    <?php echo $this->ckeditor->editor("textarea name","default textarea value");  ?>
                   </div>
               </div>
           </div>

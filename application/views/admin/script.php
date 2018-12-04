@@ -2,7 +2,7 @@
     setSeletedLimit();
     function setSeletedLimit(){
       var input = document.getElementById('limit');
-      var limit = <?php echo $limit_per_page ?>;
+      var limit = <?php if(isset($limit_per_page)) echo $limit_per_page;?>;
       var option = input.getElementsByTagName('option');
       for(var j=1; j<option.length; j++){
         if(limit==option[j].value){

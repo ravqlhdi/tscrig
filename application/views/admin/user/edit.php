@@ -9,7 +9,7 @@
         </div>
         <!-- breadcrumb -->
         <div class="col-md-6" style="text-align: right">
-          <?php echo $breadcrumbs;?>
+          <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
         </div>
       </div>
         <!-- Input -->
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                     <div class="body">
-                      <form  method="post" class='form_<?php echo $current_page; ?>' accept-charset="utf-8" action="<?php echo site_url(''.$current_page.'/update?id='.$id);?>">
+                      <form  method="post" accept-charset="utf-8" action="<?php echo site_url(''.$current_page.'/update?id='.$id);?>">
                         <div class="row clearfix">
                           <div class="col-md-6">
                             <div class="form-group">

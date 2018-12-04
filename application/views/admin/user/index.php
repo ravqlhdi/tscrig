@@ -9,7 +9,7 @@
         </div>
         <!-- breadcrumb -->
         <div class="col-md-6" style="text-align: right">
-          <?php echo $breadcrumbs;?>
+          <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
         </div>
       </div>
       <!-- Alert for or status data change -->

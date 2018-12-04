@@ -9,7 +9,7 @@
       </div>
       <!-- breadcrumb -->
       <div class="col-md-6" style="text-align: right">
-        <?php echo $breadcrumbs;?>
+        <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
       </div>
     </div>
     <!-- Alert for or status data change -->
@@ -79,7 +79,9 @@
                              <?php foreach ($table_header as $key => $value): ?>
                                <th><?php echo $key?></th>
                              <?php endforeach; ?>
-
+                             <th class="text-center">
+                               <a href="<?php echo base_url($current_page.'/create/');?>"><button class="btn btn-primary btn-sm waves-effect">Tambah</button></a>
+                             </th>
                            </tr>
                         </thead>
                         <tbody>

@@ -9,7 +9,7 @@
         </div>
         <!-- breadcrumb -->
         <div class="col-md-6" style="text-align: right">
-          <?php echo $breadcrumbs;?>
+          <?php if(isset($breadcrumbs)) echo $breadcrumbs;?>
         </div>
       </div>
         <!-- Input -->
@@ -35,13 +35,29 @@
                         </ul>
                     </div>
                     <div class="body">
-                      <form  method="post" class='form_<?php echo $current_page; ?>'  accept-charset="utf-8" action="<?php echo base_url(''.$current_page.'/store') ?>">
+                      <?php
+                      $action = base_url(''.$current_page.'/store');
+                      $attributes = [];
+                      echo form_open_multipart($action,$attributes)
+                      ?>
                         <div class="row clearfix">
-                          <div class="col-md-6">
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label class="form-label">Nama User</label>
+                                <div class="form-line">
+                                  <select class="form-control show-tick" name="<?php echo $name[8] ?>">
+                                      <?php foreach ($select_user as $key => $user): ?>
+                                        <option value="<?php echo $user->user_id ?>"><?php echo $user->user_name ?></option>
+                                      <?php endforeach; ?>
+                                  </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
                             <div class="form-group">
                               <label class="form-label">Nama Lengkap</label>
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="<?php echo $name[1];?>" placeholder="Masukan Nama Grup">
+                                    <input type="text" class="form-control" name="<?php echo $name[1];?>" placeholder="Masukan Nama Lengkap">
                                 </div>
                             </div>
                           </div>
@@ -49,7 +65,7 @@
                             <div class="form-group">
                               <label class="form-label">Tempat Lahir</label>
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="<?php echo $name[1];?>" placeholder="Masukan Tempat">
+                                    <input type="text" class="form-control" name="<?php echo $name[2];?>" placeholder="Masukan Tempat">
                                 </div>
                             </div>
                           </div>
@@ -57,7 +73,7 @@
                             <div class="form-group">
                               <label class="form-label">Tanggal Lahir</label>
                                 <div class="form-line">
-                                    <input type="date" data-date-format="DD MMMM YYYY" class="form-control" name="<?php echo $name[1];?>" placeholder="">
+                                    <input type="date" data-date-format="DD MMMM YYYY" class="form-control" name="<?php echo $name[3];?>" placeholder="">
                                 </div>
                             </div>
                           </div>
@@ -65,7 +81,7 @@
                         <div class="row clearfix">
                           <div class="col-md-6">
                             <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-control show-tick" name="<?php echo $name[3] ?>">
+                            <select class="form-control show-tick" name="<?php echo $name[4] ?>">
                                 <option value="pria">Pria</option>
                                 <option value="wanita">Wanita</option>
                             </select>
@@ -74,7 +90,7 @@
                             <div class="form-group">
                               <label class="form-label">Nomor Telepon</label>
                                 <div class="form-line">
-                                    <input type="number" class="form-control" name="<?php echo $name[1];?>" placeholder="Masukan Nama Grup">
+                                    <input type="number" class="form-control" name="<?php echo $name[5];?>" placeholder="Masukan Nama Grup">
                                 </div>
                             </div>
                           </div>
@@ -84,38 +100,27 @@
                             <div class="form-group">
                               <label class="form-label">Alamat</label>
                               <div class="form-line">
-                                <textarea rows="4" name="<?php echo $name[3];?>" class="form-control no-resize" placeholder="Masukan Alamat"></textarea>
+                                <textarea rows="4" name="<?php echo $name[6];?>" class="form-control no-resize" placeholder="Masukan Alamat"></textarea>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="row clearfix">
                           <div class="col-md-6">
                             <div class="forn-group">
                               <label for="">Foto</label>
                               <div class="form-line">
-                                <div class="dz-message">
-                                    <div class="drag-icon-cph">
-                                        <i class="material-icons">touch_app</i>
-                                    </div>
-                                    <h3>Drop files here or click to upload.</h3>
-                                    <em>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</em>
-                                </div>
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
+                                <input name="userfile" type="file">
+
                               </div>
                             </div>
                           </div>
                         </div>
-
                         <div class="row clearfix">
                           <div class="col-md-3 col-md-offset-9 col-xs-12">
                             <button class="btn btn-sm btn-warning" type="button" onclick="window.history.back();">Kembali</button>
                             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
                           </div>
                         </div>
-                      </form>
+                      <?php echo form_close() ?>
                     </div>
             </div>
         </div>

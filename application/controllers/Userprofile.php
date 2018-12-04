@@ -71,6 +71,8 @@ class userprofile extends MY_Controller{
     $this->load->view('admin', $data);
   }
   public function create(){
+    $this->load->model('m_user');
+    $data['select_user'] = $this->m_user->get();
     $data['name'] = $this->name;
     $data['menu'] = $this->getMenu();
     $data['current_page'] = 'userprofile';
@@ -81,6 +83,27 @@ class userprofile extends MY_Controller{
     $name = $this->name;
     foreach ($name as $key => $value) {
         $data[$value] = $this->input->post_get($value);
+    }
+
+    //upload script
+    $config['upload_path']          = './file/profile_photo';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 1000;
+    $config['max_width']            = 10240;
+    $config['max_height']           = 7680;
+    $config['file_name']            = str_replace(" ","_",$data['userprofile_surename']);
+    $this->load->library('upload', $config);
+    if ( ! $this->upload->do_upload('userfile')){
+        $error = array('error' => $this->upload->display_errors());
+        $status['message'] = $error['error'];
+        $status['type'] = 'error';
+        $status['color'] = 'red';
+        $this->session->set_flashdata('status', $status);
+        $data['userprofile_photo'] = "";
+    }else{
+        $upload_data = $this->upload->data();
+        $data['userprofile_photo'] = $upload_data['file_name'];
+
     }
     $query = $this->m_userprofile->add($data);
     if(!$query){
